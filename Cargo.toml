@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "scylla-plugin-api",
+    "plugin-template",
+    "plugin-royalroad",
+]
