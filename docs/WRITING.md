@@ -63,14 +63,16 @@ The shared contract in `scylla-plugin-api`:
 | `PluginChapter` | `title`, `url`, `order: u32` |
 | `ChapterOutput` | `title`, `content` |
 
-`ScrapeInput.config` carries the user's saved settings for the plugin (see below). `accepts_cookies: true` in the schema makes Scylla forward the browser cookie string in `ScrapeInput.cookies`.
+`ScrapeInput.config` carries the user's saved settings for the plugin (see below). `accepts_cookies: true` exposes a cookie field in Scylla's plugin settings; whatever is stored there is forwarded in `ScrapeInput.cookies`.
 
 ## Host functions
 
 Two functions come from the host:
 
-- `curl_fetch`: download a page, with an optional cookie string. This is the only path to the network.
+- `curl_fetch`: download a page, with an optional cookie string.
 - `scylla_fail`: abort and report an error message back to the server.
+
+The host also permits extism-pdk's `http::request`; `plugin-royalroad` fetches that way.
 
 ## Plugin config
 

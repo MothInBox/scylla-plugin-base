@@ -14,9 +14,11 @@ Every asset must be named `plugin-<domain>.wasm`. Scylla takes the domain from t
 
 ## Publish
 
+Cargo emits the wasm under the package name with underscores, so copy it to the name Scylla expects before publishing:
+
 ```sh
-gh release create v0.1.0 \
-    target/wasm32-unknown-unknown/release/plugin-my-plugin.wasm
+cp target/wasm32-unknown-unknown/release/my_plugin.wasm plugin-<domain>.wasm
+gh release create v0.1.0 plugin-<domain>.wasm
 ```
 
 Scylla fetches the **latest stable release** and downloads every `.wasm` asset attached to it, whatever the directory structure. A single release can bundle several plugins, and each domain registers independently.
